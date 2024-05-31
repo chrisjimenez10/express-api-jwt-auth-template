@@ -2,6 +2,7 @@
 require("dotenv").config();
 const express = require("express");
 const app = express();
+const cors = require("cors");
 const mongoose = require("mongoose");
 const morgan = require("morgan");
 const testJWTRouter = require("./controllers/test-jwt.js");
@@ -15,7 +16,7 @@ mongoose.connection.on("connected", ()=>{
     console.log(`Connected to MongoDB ${mongoose.connection.name}`);
 });
 
-
+app.use(cors());
 app.use(express.json());
 app.use(morgan("dev"));
 
